@@ -1,50 +1,61 @@
-# Welcome to your Expo app 👋
+# User-Interface
+Interface para o usuário
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Mobile
 
-## Get started
+![alt text](Images/Login.png)
 
-1. Install dependencies
+### Tela inicial / Menu principal
 
-   ```bash
-   npm install
-   ```
+![alt text](Images/Principal.png) 
 
-2. Start the app
+- Botões ou ícones para acessar as principais áreas (Livros, Destaques, Meu Perfil, Histórico, Reservas, Configurações).
+- Pode ter um banner com novidades ou promoções do acervo.
+- Livros destaques e botão de reservar/pegar emprestado.
+- Uma sessão de livros de os mais populares passando em carrossel.
+- Livros recomendados, novos ou mais emprestados.
 
-   ```bash
-   npx expo start
-   ```
+### Página de Livros + Pesquisa
 
-In the output, you'll find options to open the app in a
+![alt text](Images/Principal2.png)
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- Campo de busca (por título, autor, categoria).
+- Filtros (gênero, disponibilidade, mais populares).
+- Lista com capa + título + autor + status (disponível / emprestado / reservado).
+- Botão para reservar ou pegar emprestado (se disponível).
+- Pode ter carrossel de capas ou lista com resenhas rápidas.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+### Página do Usuário / Perfil
 
-## Get a fresh project
+![alt text](Images/Perfil.png)
 
-When you're ready, run:
+- Foto e nome do usuário.
+- Dados de contato.
+- Status de multa (se houver).
+- Link rápido para histórico, reservas e configurações.
 
-```bash
-npm run reset-project
-```
+### Página de Histórico
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+| ![img1](Images/Hist1.png) | ![img2](Images/Hist2.png) | ![img3](Images/Hist3.png) |
+|--------------------------------|--------------------------------|--------------------------------|
 
-## Learn more
+- Seção 1: Livros atualmente alugados (com data de devolução e botão para renovar).
+- Seção 2: Livros já alugados no passado.
+- Seção 3: Reservas (com posição na fila de espera).
 
-To learn more about developing your project with Expo, look at the following resources:
+### Página de Notificações
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+![alt text](Images/Notificacao.png)
 
-## Join the community
+- Lembretes de devolução.
+- Avisos sobre reservas disponíveis.
+- Cobrança de multa.
+- Mensagens gerais da biblioteca.
 
-Join our community of developers creating universal apps.
+### Página de Configurações
+- Alterar dados pessoais.
+- Preferências de notificação.
+- Alterar senha.
+- Sair da conta.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+[Abrir protótipo no Figma](https://www.figma.com/proto/MmMfYzk8pks8J2KWb7PVpI/Untitled?node-id=166-2&p=f&t=9QoUWYaFTWtZV4js-1&scaling=min-zoom&content-scaling=fixed&page-id=10%3A151&starting-point-node-id=166%3A2)
