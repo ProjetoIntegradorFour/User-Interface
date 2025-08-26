@@ -1,5 +1,7 @@
+import { ThemedText } from "@/components/ThemedText";
+
 export default function TabFourScreen() {
     return (
-        <h1>Hello World</h1>
+        <ThemedText>profile</ThemedText>
     )
 }
