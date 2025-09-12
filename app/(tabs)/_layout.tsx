@@ -1,14 +1,14 @@
 import { router, Tabs } from 'expo-router';
 import React from 'react';
-import { Pressable, Image } from 'react-native';
+import { Image, Pressable } from 'react-native';
 
 import { HapticTab } from '@/components/HapticTab';
+import { ThemedText } from '@/components/ThemedText';
 import { IconSymbol } from '@/components/ui/IconSymbol';
-import FontAwesome from '@expo/vector-icons/FontAwesome';
 import TabBarBackground from '@/components/ui/TabBarBackground';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
-import { ThemedText } from '@/components/ThemedText';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -89,7 +89,7 @@ export default function TabLayout() {
         }}
       />
 
-      // favorite.tsx e notification.tsx não inclusos
+       {/* favorite.tsx e notification.tsx não inclusos */}
 
       <Tabs.Screen
       name='favorite'
