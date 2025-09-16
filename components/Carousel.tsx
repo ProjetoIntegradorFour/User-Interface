@@ -1,6 +1,6 @@
-import { Ionicons } from "@expo/vector-icons";
 import React, { useRef, useState } from "react";
-import { Dimensions, FlatList, Image, Text, TouchableOpacity, View } from "react-native";
+import { View, Text, FlatList, Image, TouchableOpacity, Dimensions, StyleSheet } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 const { width } = Dimensions.get("window");
 
@@ -30,17 +30,15 @@ const Carousel: React.FC<CarouselProps> = ({ title, data, renderButton }) => {
   return (
     <View style={{ marginVertical: 20 }}>
       {/* título */}
-      <Text style={{ fontSize: 20, fontWeight: "bold", marginLeft: 10, marginBottom: 10 }}>
-        {title}
-      </Text>
+      <Text style={styles.title}>{title}</Text>
 
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         {/* seta esquerda */}
         <TouchableOpacity onPress={() => scrollToIndex(currentIndex - 1)}>
-          <Ionicons name="chevron-back" size={30} color="black" />
+          <Ionicons name="chevron-back-circle" size={36} color="#a020f0" />
         </TouchableOpacity>
 
-        {/* lista de livros */}
+        {/* lista */}
         <FlatList
           ref={flatListRef}
           data={data}
@@ -48,24 +46,14 @@ const Carousel: React.FC<CarouselProps> = ({ title, data, renderButton }) => {
           horizontal
           showsHorizontalScrollIndicator={false}
           renderItem={({ item }) => (
-            <View style={{ width: width * 0.3, marginHorizontal: 8 }}>
-              <Image
-                source={{ uri: item.image }}
-                style={{
-                  width: "100%",
-                  height: 160,
-                  borderRadius: 6,
-                  marginBottom: 6,
-                  resizeMode: "cover",
-                }}
-              />
-              <Text style={{ fontWeight: "600", marginBottom: 5 }}>{item.title}</Text>
-              {renderButton(item)} {/* botão que você passa */}
+            <View style={styles.card}>
+              <Image source={{ uri: item.image }} style={styles.image} />
+              {renderButton(item)}
             </View>
           )}
           onMomentumScrollEnd={(event) => {
             const index = Math.round(
-              event.nativeEvent.contentOffset.x / (width * 0.6 + 20)
+              event.nativeEvent.contentOffset.x / (width * 0.45 + 20)
             );
             setCurrentIndex(index);
           }}
@@ -73,11 +61,41 @@ const Carousel: React.FC<CarouselProps> = ({ title, data, renderButton }) => {
 
         {/* seta direita */}
         <TouchableOpacity onPress={() => scrollToIndex(currentIndex + 1)}>
-          <Ionicons name="chevron-forward" size={30} color="black" />
+          <Ionicons name="chevron-forward-circle" size={36} color="#a020f0" />
         </TouchableOpacity>
       </View>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  title: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#a020f0",
+    marginLeft: 10,
+    marginBottom: 10,
+  },
+  card: {
+    width: width * 0.45,
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    marginHorizontal: 10,
+    alignItems: "center",
+    padding: 10,
+    shadowColor: "#000",
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 5,
+    elevation: 3,
+  },
+  image: {
+    width: "100%",
+    height: 200,
+    borderRadius: 6,
+    marginBottom: 10,
+    resizeMode: "cover",
+  },
+});
 
 export default Carousel;

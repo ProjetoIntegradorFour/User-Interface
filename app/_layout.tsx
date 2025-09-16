@@ -1,14 +1,11 @@
-import { ThemeProvider, DefaultTheme, DarkTheme } from '@react-navigation/native';
+import { DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+import { Text, View } from 'react-native';
 import 'react-native-reanimated';
-import "@/styles/globals.css";
-import { useColorScheme } from '@/hooks/useColorScheme';
-import { View, Text } from 'react-native';
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
   const [fontsLoaded] = useFonts({
     SpaceMono: require('assets/fonts/SpaceMono-Regular.ttf'),
     "Roboto-Medium": require("assets/fonts/Roboto-Medium.ttf"),
@@ -25,11 +22,9 @@ export default function RootLayout() {
     );
   }
 
-  const theme = colorScheme === 'dark' ? DarkTheme : DefaultTheme;
-
   return (
-    <ThemeProvider value={theme}>
-      <Stack>
+    <ThemeProvider value={DefaultTheme}>
+      <Stack initialRouteName="login">
         {/* Tela inicial (login) */}
         <Stack.Screen name="login" options={{ headerShown: false }} />
 
@@ -38,7 +33,7 @@ export default function RootLayout() {
 
         <Stack.Screen name="+not-found" />
       </Stack>
-      <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
+      <StatusBar style="dark" />
     </ThemeProvider>
   );
 }

@@ -5,7 +5,6 @@ import { useRouter } from "expo-router";
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 
-
 export default function Login() {
   const router = useRouter();
   const [fontsLoaded] = useFonts({
@@ -13,8 +12,15 @@ export default function Login() {
     "RacingSansOne-Regular": require("assets/fonts/RacingSansOne-Regular.ttf"),
   });
 
+  if (!fontsLoaded) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Text>Carregando fontes...</Text>
+      </View>
+    );
+  }
+
   return (
-//assets\images\logo.png
     <View style={styles.container}>
       <View style={styles.rectangle}>
         <Image
@@ -24,18 +30,17 @@ export default function Login() {
         />
         <Text style={styles.logo}>SENAI</Text>
 
-        <Textfield  placeholder="Usuário..."/>
+        <Textfield placeholder="Usuário..." />
         <Textfield placeholder="Senha..." secureTextEntry />
 
         <Text style={styles.campo}>Tela de Login</Text>
         <CustomButtonPurple
           title="Entrar"
-          onPress={() => router.push("/")} // leva direto para as tabs
+          onPress={() => router.replace("/(tabs)/explore")} // substitui o login e leva para as tabs
         />
       </View>
     </View>
   );
-
 }
 
 const styles = StyleSheet.create({
@@ -52,7 +57,6 @@ const styles = StyleSheet.create({
     height: "60%",
     alignItems: "center",
   },
-
   logo: {
     fontFamily: "RacingSansOne-Regular",
     fontSize: 30,
@@ -61,14 +65,13 @@ const styles = StyleSheet.create({
   },
   campo: {
     fontFamily: "RacingSansOne-Regular",
-    fontSize: 30,
+    fontSize: 20,
     color: "#FFF",
-    fontWeight: "bold",
+    marginTop: 15,
   },
   logoImg: {
     width: 50,
     height: 50,
     marginBottom: 10,
   },
-
 });
