@@ -30,14 +30,17 @@ export default function Login() {
         />
         <Text style={styles.logo}>SENAI</Text>
 
-        <Textfield placeholder="Usuário..." />
-        <Textfield placeholder="Senha..." secureTextEntry />
+        <View style={styles.inputGroup}>
+          <Textfield placeholder="Usuário..." />
+          <Textfield placeholder="Senha..." secureTextEntry />
+        </View>
 
-        <Text style={styles.campo}>Tela de Login</Text>
+        <View style={styles.marge}>
         <CustomButtonPurple
           title="Entrar"
-          onPress={() => router.replace("/(tabs)/explore")} // substitui o login e leva para as tabs
+          onPress={() => router.replace("/(tabs)/explore")}
         />
+        </View>
       </View>
     </View>
   );
@@ -51,17 +54,27 @@ const styles = StyleSheet.create({
   },
   rectangle: {
     backgroundColor: "#8BC34A",
-    width: "80%",
-    padding: 25,
+    width: "90%",
+    paddingTop: 20,
+    padding: 40,
     borderRadius: 10,
-    height: "60%",
+    height: "55%",
     alignItems: "center",
   },
   logo: {
     fontFamily: "RacingSansOne-Regular",
+    top: 0,
     fontSize: 30,
     color: "#FFF",
     fontWeight: "bold",
+  },
+  inputGroup: {
+    width: "100%",
+    marginTop: 20,
+    bottom: 0,
+  },
+  marge: {
+    marginTop: 30,
   },
   campo: {
     fontFamily: "RacingSansOne-Regular",
@@ -70,8 +83,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   logoImg: {
-    width: 50,
-    height: 50,
-    marginBottom: 10,
+    width: 70,
+    height: 70,
   },
 });
