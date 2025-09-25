@@ -28,7 +28,7 @@ const Carousel: React.FC<CarouselProps> = ({ title, data, renderButton }) => {
   };
 
   return (
-    <View style={{ marginVertical: 20 }}>
+    <View style={{ marginVertical: 20, marginLeft: 6, marginRight: 6, }}>
       {/* título */}
       <Text style={styles.title}>{title}</Text>
 
@@ -88,6 +88,9 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 5,
     elevation: 3,
+    height: 280,
+    marginBottom: 5,
+    marginTop: 5,
   },
   image: {
     width: "100%",

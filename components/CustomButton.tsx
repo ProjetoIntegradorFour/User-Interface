@@ -1,30 +1,50 @@
 import React from "react";
-import { TouchableOpacity, Text, StyleSheet } from "react-native";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
 interface CustomButtonProps {
   title: string;
   onPress: () => void;
+  variant?: "primary" | "secondary";
 }
 
-const CustomButton: React.FC<CustomButtonProps> = ({ title, onPress }) => {
+const CustomButton: React.FC<CustomButtonProps> = ({ title, onPress, variant = "primary" }) => {
   return (
-    <TouchableOpacity style={styles.button} onPress={onPress} activeOpacity={0.8}>
-      <Text style={styles.text}>{title}</Text>
+    <TouchableOpacity
+      style={[styles.button, variant === "secondary" && styles.secondary]}
+      onPress={onPress}
+      activeOpacity={0.8}
+    >
+      <Text style={[styles.text, variant === "secondary" && styles.secondaryText]}>
+        {title}
+      </Text>
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: "#007bff",
-    paddingVertical: 8,
-    paddingHorizontal: 20,
-    borderRadius: 4,
+    backgroundColor: "#fff",
+    paddingVertical: 10,
+    paddingHorizontal: 18,
+    borderRadius: 10,
+    borderColor: "#007bff",
+    alignItems: "center",
+    borderWidth: 3,
+    maxWidth: "50%",
   },
   text: {
-    color: "#fff",
+    color: "#007bff",
+    fontSize: 16,
     fontWeight: "bold",
-    fontSize: 14,
+    fontFamily: "Roboto-Medium",
+  },
+  secondary: {
+    backgroundColor: "#f0f0f0",
+    borderWidth: 1,
+    borderColor: "#ccc",
+  },
+  secondaryText: {
+    color: "#000000ff",
   },
 });
 
