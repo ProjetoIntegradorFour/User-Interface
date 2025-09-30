@@ -1,25 +1,27 @@
-import { useRouter } from 'expo-router';
-import CustomButtonOutline from "@/components/CustomButtonOutline";
-import Textfield from "@/components/textfield";
-import { ThemedText } from "@/components/ThemedText";
+import CardBook from "components/CardBook";
 import React from "react";
-import { View } from "react-native";
+import { ScrollView } from "react-native";
 
-export default function TabThreeScreen() {
-  const router = useRouter();
-
+export default function App() {
   return (
-  <View style={{ flex: 1, padding: 16 }}>
-    <ThemedText>history</ThemedText>
+    <ScrollView style={{ flex: 1, backgroundColor: "#f9f9f9", paddingTop: 50 }}>
+      <CardBook
+        title="O Ladrão de Raios"
+        author="Rick Riordan"
+        cover="https://covers.openlibrary.org/b/id/10521209-L.jpg"
+        dueDate="22/08/2025"
+        status="ok"
+        onRenew={() => console.log("Renovar Ladrão de Raios")}
+      />
 
-    <Textfield placeholder="Usuário..." />
-    <Textfield placeholder="Senha..." secureTextEntry />
-
-    <CustomButtonOutline
-      title="Ir para Login"
-      onPress={() => router.push('/login')}
-    />
-  </View>
-);
-
+      <CardBook
+        title="Uma Odisseia no Espaço"
+        author="Arthur Clarke"
+        cover="https://covers.openlibrary.org/b/id/11153268-L.jpg"
+        dueDate="09/07/2025"
+        status="late"
+        onRenew={() => console.log("Renovar Odisseia")}
+      />
+    </ScrollView>
+  );
 }

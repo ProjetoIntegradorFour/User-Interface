@@ -7,14 +7,20 @@ interface CustomButtonProps {
   variant?: "primary" | "secondary";
 }
 
-const CustomButton: React.FC<CustomButtonProps> = ({ title, onPress, variant = "primary" }) => {
+const CustomButton: React.FC<CustomButtonProps> = ({
+  title,
+  onPress,
+  variant = "primary",
+}) => {
   return (
     <TouchableOpacity
       style={[styles.button, variant === "secondary" && styles.secondary]}
       onPress={onPress}
       activeOpacity={0.8}
     >
-      <Text style={[styles.text, variant === "secondary" && styles.secondaryText]}>
+      <Text
+        style={[styles.text, variant === "secondary" && styles.secondaryText]}
+      >
         {title}
       </Text>
     </TouchableOpacity>
@@ -24,17 +30,19 @@ const CustomButton: React.FC<CustomButtonProps> = ({ title, onPress, variant = "
 const styles = StyleSheet.create({
   button: {
     backgroundColor: "#fff",
-    paddingVertical: 10,
-    paddingHorizontal: 18,
-    borderRadius: 10,
+    paddingVertical: 6,
+    paddingHorizontal: 20,
+    borderRadius: 8,
     borderColor: "#007bff",
+    borderWidth: 2,
     alignItems: "center",
-    borderWidth: 3,
-    maxWidth: "50%",
+    justifyContent: "center",
+    minWidth: 100,
+    alignSelf: "flex-start",
   },
   text: {
     color: "#007bff",
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: "bold",
     fontFamily: "Roboto-Medium",
   },
