@@ -36,7 +36,12 @@ const BookCard: React.FC<BookCardProps> = ({
           {isLate ? "Devolução atrasada" : "Devolução até " + dueDate}
         </Text>
       </View>
-      <CustomButton title="RENOVAR" onPress={onRenew} />
+      <CustomButton
+        title="RENOVAR"
+        variant="outline"
+        color="#007bff"
+        onPress={onRenew}
+      />
     </View>
   );
 };

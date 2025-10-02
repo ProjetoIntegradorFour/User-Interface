@@ -1,5 +1,5 @@
 import { useRouter } from "expo-router";
-import CustomButtonOutline from "@/components/CustomButtonOutline";
+import CustomButton from "@/components/CustomButton";
 import Textfield from "@/components/textfield";
 import { ThemedText } from "@/components/ThemedText";
 import React from "react";
@@ -14,9 +14,10 @@ export default function TabFiveScreen() {
 
       <Textfield placeholder="Usuário..." />
       <Textfield placeholder="Senha..." secureTextEntry />
-
-      <CustomButtonOutline
+      <CustomButton
         title="Ir para Login"
+        variant="outline"
+        color="#007bff"
         onPress={() => router.push("/login")}
       />
     </View>

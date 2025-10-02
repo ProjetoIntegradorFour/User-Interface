@@ -37,7 +37,9 @@ export default function App() {
           data={books}
           renderButton={(book) => (
             <CustomButton
-              title="RESERVAR"
+              title="RENOVAR"
+              variant="outline"
+              color="#007bff"
               onPress={() => console.log("Reservou", book.title)}
             />
           )}
@@ -47,7 +49,9 @@ export default function App() {
           data={books}
           renderButton={(book) => (
             <CustomButton
-              title="RESERVAR"
+              title="RENOVAR"
+              variant="outline"
+              color="#007bff"
               onPress={() => console.log("Reservou", book.title)}
             />
           )}

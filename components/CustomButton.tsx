@@ -1,59 +1,52 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
-interface CustomButtonProps {
+type ButtonProps = {
   title: string;
+  variant?: "outline" | "filled"; // define o tipo do botão
+  color?: string; // cor principal (padrão azul/roxo)
   onPress: () => void;
-  variant?: "primary" | "secondary";
-}
+};
 
-const CustomButton: React.FC<CustomButtonProps> = ({
+export default function CustomButton({
   title,
+  variant = "outline",
+  color = "#007bff", // azul padrão
   onPress,
-  variant = "primary",
-}) => {
+}: ButtonProps) {
+  const isFilled = variant === "filled";
+
   return (
     <TouchableOpacity
-      style={[styles.button, variant === "secondary" && styles.secondary]}
+      style={[
+        styles.button,
+        {
+          backgroundColor: isFilled ? color : "#fff",
+          borderColor: color,
+          borderWidth: isFilled ? 0 : 2,
+        },
+      ]}
       onPress={onPress}
-      activeOpacity={0.8}
     >
-      <Text
-        style={[styles.text, variant === "secondary" && styles.secondaryText]}
-      >
+      <Text style={[styles.text, { color: isFilled ? "#fff" : color }]}>
         {title}
       </Text>
     </TouchableOpacity>
   );
-};
+}
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: "#fff",
     paddingVertical: 6,
     paddingHorizontal: 20,
     borderRadius: 8,
-    borderColor: "#007bff",
-    borderWidth: 2,
-    alignItems: "center",
-    justifyContent: "center",
     minWidth: 100,
     alignSelf: "flex-start",
+    alignItems: "center",
+    justifyContent: "center",
   },
   text: {
-    color: "#007bff",
     fontSize: 15,
-    fontWeight: "bold",
-    fontFamily: "Roboto-Medium",
-  },
-  secondary: {
-    backgroundColor: "#f0f0f0",
-    borderWidth: 1,
-    borderColor: "#ccc",
-  },
-  secondaryText: {
-    color: "#000000ff",
+    fontWeight: "600",
   },
 });
-
-export default CustomButton;

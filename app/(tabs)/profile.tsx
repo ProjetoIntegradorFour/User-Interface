@@ -1,4 +1,5 @@
-import { Ionicons } from "@expo/vector-icons"; // ícones bonitos
+import { Ionicons } from "@expo/vector-icons";
+import CustomButton from "components/CustomButton";
 import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
@@ -35,10 +36,12 @@ export default function Profile() {
             </View>
           </View>
         </View>
-
-        <TouchableOpacity style={styles.btn}>
-          <Text style={styles.btnText}>Alterar Foto</Text>
-        </TouchableOpacity>
+        <CustomButton
+          title="Alterar Foto"
+          variant="filled"
+          color="#8000ff"
+          onPress={() => console.log("Alterar Foto")}
+        />
       </View>
 
       {/* Opções abaixo */}

@@ -1,9 +1,9 @@
-import CustomButtonPurple from "@/components/CustomButtonPurple";
 import Textfield from "@/components/textfield";
-import { useFonts } from 'expo-font';
+import { useFonts } from "expo-font";
 import { useRouter } from "expo-router";
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
+import CustomButton from "@/components/CustomButton";
 
 export default function Login() {
   const router = useRouter();
@@ -36,10 +36,12 @@ export default function Login() {
         </View>
 
         <View style={styles.marge}>
-        <CustomButtonPurple
-          title="Entrar"
-          onPress={() => router.replace("/(tabs)/explore")}
-        />
+          <CustomButton
+            title="Entrar"
+            variant="filled"
+            color="#8000ff"
+            onPress={() => router.replace("/(tabs)/explore")}
+          />
         </View>
       </View>
     </View>
