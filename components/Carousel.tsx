@@ -1,6 +1,14 @@
-import React, { useRef, useState } from "react";
-import { View, Text, FlatList, Image, TouchableOpacity, Dimensions, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import React, { useRef, useState } from "react";
+import {
+  Dimensions,
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 const { width } = Dimensions.get("window");
 
@@ -28,14 +36,14 @@ const Carousel: React.FC<CarouselProps> = ({ title, data, renderButton }) => {
   };
 
   return (
-    <View style={{ marginVertical: 20, marginLeft: 6, marginRight: 6, }}>
+    <View style={{ marginVertical: 20, marginLeft: 6, marginRight: 6 }}>
       {/* título */}
       <Text style={styles.title}>{title}</Text>
 
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         {/* seta esquerda */}
         <TouchableOpacity onPress={() => scrollToIndex(currentIndex - 1)}>
-          <Ionicons name="chevron-back-circle" size={36} color="#a020f0" />
+          <Ionicons name="chevron-back-circle" size={36} color="#9C27B0" />
         </TouchableOpacity>
 
         {/* lista */}
@@ -61,7 +69,7 @@ const Carousel: React.FC<CarouselProps> = ({ title, data, renderButton }) => {
 
         {/* seta direita */}
         <TouchableOpacity onPress={() => scrollToIndex(currentIndex + 1)}>
-          <Ionicons name="chevron-forward-circle" size={36} color="#a020f0" />
+          <Ionicons name="chevron-forward-circle" size={36} color="#9C27B0" />
         </TouchableOpacity>
       </View>
     </View>
@@ -72,7 +80,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: "bold",
-    color: "#a020f0",
+    color: "#9C27B0",
     marginLeft: 10,
     marginBottom: 10,
   },
