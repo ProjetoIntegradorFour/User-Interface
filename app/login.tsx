@@ -1,12 +1,17 @@
 import CustomButton from "@/components/CustomButton";
-import Textfield from "@/components/textfield";
+import Textfield from "@/components/TextField1";
+import axios from "axios";
 import { useFonts } from "expo-font";
 import { useRouter } from "expo-router";
-import React from "react";
+import React, { useState } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 
 export default function Login() {
   const router = useRouter();
+  const [cpf, setCpf] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
   const [fontsLoaded] = useFonts({
     "Roboto-Bold": require("assets/fonts/Roboto-Bold.ttf"),
     "RacingSansOne-Regular": require("assets/fonts/RacingSansOne-Regular.ttf"),
@@ -20,6 +25,30 @@ export default function Login() {
     );
   }
 
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/auth/signin",
+        {
+          cpf,
+          password,
+        }
+      );
+
+      const data = response.data;
+      console.log("JWT Token:", data.accessToken);
+
+      // Aqui você pode salvar o token no AsyncStorage para usar nas próximas chamadas da API
+      // await AsyncStorage.setItem("token", data.accessToken);
+
+      // Redireciona para a tela principal
+      router.replace("/(tabs)/explore");
+    } catch (err) {
+      console.error(err.response?.data || err.message);
+      setError("CPF ou senha inválidos");
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.rectangle}>
@@ -31,16 +60,27 @@ export default function Login() {
         <Text style={styles.logo}>SENAI</Text>
 
         <View style={styles.inputGroup}>
-          <Textfield placeholder="Usuário..." />
-          <Textfield placeholder="Senha..." secureTextEntry />
+          <Textfield
+            placeholder="Usuário..."
+            value={cpf}
+            onChangeText={setCpf}
+          />
+          <Textfield
+            placeholder="Senha..."
+            secureTextEntry
+            value={password}
+            onChangeText={setPassword}
+          />
         </View>
+
+        {error ? <Text style={styles.error}>{error}</Text> : null}
 
         <View style={styles.marge}>
           <CustomButton
             title="Entrar"
             variant="filled"
             color="#9C27B0"
-            onPress={() => router.replace("/(tabs)/explore")}
+            onPress={handleLogin}
           />
         </View>
       </View>
@@ -87,5 +127,10 @@ const styles = StyleSheet.create({
   logoImg: {
     width: 70,
     height: 70,
+  },
+  error: {
+    color: "red",
+    marginTop: 10,
+    fontSize: 14,
   },
 });
