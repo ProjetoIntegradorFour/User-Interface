@@ -1,13 +1,14 @@
 import CustomButton from "@/components/CustomButton";
 import Textfield from "@/components/TextField1";
-import axios from "axios";
 import { useFonts } from "expo-font";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
+import { useAuth } from "../contexts/AuthContext";
 
 export default function Login() {
   const router = useRouter();
+  const { signIn } = useAuth();
   const [cpf, setCpf] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -27,23 +28,9 @@ export default function Login() {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post(
-        "http://localhost:8080/api/auth/signin",
-        {
-          cpf,
-          password,
-        }
-      );
-
-      const data = response.data;
-      console.log("JWT Token:", data.accessToken);
-
-      // Aqui você pode salvar o token no AsyncStorage para usar nas próximas chamadas da API
-      // await AsyncStorage.setItem("token", data.accessToken);
-
-      // Redireciona para a tela principal
-      router.replace("/(tabs)/explore");
-    } catch (err) {
+      await signIn(cpf, password); // chama o contexto que já usa o service
+      router.replace("/(tabs)/explore"); // redireciona
+    } catch (err: any) {
       console.error(err.response?.data || err.message);
       setError("CPF ou senha inválidos");
     }

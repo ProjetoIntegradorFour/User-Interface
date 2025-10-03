@@ -1,35 +1,37 @@
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
 import { StyleSheet, TextInput, View } from "react-native";
-
+import ProtectedRoute from "./ProtectedRoute";
 export default function Explore() {
   return (
-    <View style={styles.container}>
-      <View style={styles.headerBox}>
-        <View style={styles.row}>
-          <Ionicons
-            name="menu-outline"
-            size={32}
-            color="#9C27B0"
-            style={{ marginLeft: 10 }}
-          />
-
-          <View style={styles.searchBox}>
-            <TextInput
-              placeholder="pesquise aqui..."
-              placeholderTextColor="#9C27B0"
-              style={styles.input}
-            />
+    <ProtectedRoute>
+      <View style={styles.container}>
+        <View style={styles.headerBox}>
+          <View style={styles.row}>
             <Ionicons
-              name="search-outline"
-              size={20}
+              name="menu-outline"
+              size={32}
               color="#9C27B0"
-              style={styles.searchIcon}
+              style={{ marginLeft: 10 }}
             />
+
+            <View style={styles.searchBox}>
+              <TextInput
+                placeholder="pesquise aqui..."
+                placeholderTextColor="#9C27B0"
+                style={styles.input}
+              />
+              <Ionicons
+                name="search-outline"
+                size={20}
+                color="#9C27B0"
+                style={styles.searchIcon}
+              />
+            </View>
           </View>
         </View>
       </View>
-    </View>
+    </ProtectedRoute>
   );
 }
 
