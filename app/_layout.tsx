@@ -1,29 +1,42 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
-
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { AuthProvider } from "@/contexts/AuthContext";
+import { DefaultTheme, ThemeProvider } from "@react-navigation/native";
+import { useFonts } from "expo-font";
+import { Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import { Text, View } from "react-native";
+import "react-native-reanimated";
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+  const [fontsLoaded] = useFonts({
+    SpaceMono: require("assets/fonts/SpaceMono-Regular.ttf"),
+    "Roboto-Medium": require("assets/fonts/Roboto-Medium.ttf"),
+    "Roboto-Bold": require("assets/fonts/Roboto-Bold.ttf"),
+    "RacingSansOne-Regular": require("assets/fonts/RacingSansOne-Regular.ttf"),
   });
 
-  if (!loaded) {
-    // Async font loading only occurs in development.
-    return null;
+  // Bloqueia renderização até as fontes carregarem
+  if (!fontsLoaded) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Text>Carregando...</Text>
+      </View>
+    );
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
+    <ThemeProvider value={DefaultTheme}>
+      <AuthProvider>
+        <Stack initialRouteName="login">
+          {/* Tela inicial (login) */}
+          <Stack.Screen name="login" options={{ headerShown: false }} />
+
+          {/* Tabs só aparecem depois do login */}
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+
+          <Stack.Screen name="+not-found" />
+        </Stack>
+      </AuthProvider>
+      <StatusBar style="dark" />
     </ThemeProvider>
   );
 }
