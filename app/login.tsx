@@ -14,8 +14,8 @@ export default function Login() {
   const [error, setError] = useState("");
 
   const [fontsLoaded] = useFonts({
-    "Roboto-Bold": require("assets/fonts/Roboto-Bold.ttf"),
-    "RacingSansOne-Regular": require("assets/fonts/RacingSansOne-Regular.ttf"),
+    "Roboto-Bold": require("@/assets/fonts/Roboto-Bold.ttf"),
+    "RacingSansOne-Regular": require("@/assets/fonts/RacingSansOne-Regular.ttf"),
   });
 
   if (!fontsLoaded) {
@@ -40,7 +40,7 @@ export default function Login() {
     <View style={styles.container}>
       <View style={styles.rectangle}>
         <Image
-          source={require("assets/images/logo.png")}
+          source={require("@/assets/images/logo.png")}
           style={styles.logoImg}
           resizeMode="contain"
         />

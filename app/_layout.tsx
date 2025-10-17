@@ -8,10 +8,10 @@ import "react-native-reanimated";
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
-    SpaceMono: require("assets/fonts/SpaceMono-Regular.ttf"),
-    "Roboto-Medium": require("assets/fonts/Roboto-Medium.ttf"),
-    "Roboto-Bold": require("assets/fonts/Roboto-Bold.ttf"),
-    "RacingSansOne-Regular": require("assets/fonts/RacingSansOne-Regular.ttf"),
+    "SpaceMono": require("@/assets/fonts/SpaceMono-Regular.ttf"),
+    "Roboto-Medium": require("@/assets/fonts/Roboto-Medium.ttf"),
+    "Roboto-Bold": require("@/assets/fonts/Roboto-Bold.ttf"),
+    "RacingSansOne-Regular": require("@/assets/fonts/RacingSansOne-Regular.ttf"),
   });
 
   // Bloqueia renderização até as fontes carregarem

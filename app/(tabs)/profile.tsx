@@ -1,5 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
-import CustomButton from "components/CustomButton";
+import CustomButton from "@/components/CustomButton";
 import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
@@ -11,7 +11,7 @@ export default function Profile() {
     phone: "(15) 99762-6673",
     status: "Bloqueada",
     multa: true,
-    avatar: require("assets/images/gatoserio.jpg"),
+    avatar: require("@/assets/images/gatoserio.jpg"),
   };
 
   return (

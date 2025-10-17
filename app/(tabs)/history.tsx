@@ -1,4 +1,4 @@
-import CardBook from "components/CardBook";
+import CardBook from "@/components/CardBook";
 import React from "react";
 import { ScrollView } from "react-native";
 

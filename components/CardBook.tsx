@@ -12,7 +12,7 @@ interface BookCardProps {
   onRenew: () => void;
 }
 
-const BookCard: React.FC<BookCardProps> = ({
+const CardBook: React.FC<BookCardProps> = ({
   title,
   author,
   cover,
@@ -92,4 +92,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BookCard;
+export default CardBook;
