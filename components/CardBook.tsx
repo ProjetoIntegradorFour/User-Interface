@@ -8,9 +8,18 @@ interface BookCardProps {
   author: string;
   cover: string;
   dueDate: string;
-  status: "ok" | "late";
+  status: "current" | "near" | "late" | "queue" | "pickup" | "available";
   onRenew: () => void;
 }
+
+const STATUS_COLORS: Record<BookCardProps["status"], string> = {
+  current: "#00FF66",
+  near: "#FFD700",
+  late: "#FF3333",
+  queue: "#3333FF",
+  pickup: "#A020F0",
+  available: "#00FFFF",
+};
 
 const CardBook: React.FC<BookCardProps> = ({
   title,
@@ -27,21 +36,22 @@ const CardBook: React.FC<BookCardProps> = ({
       <Image source={{ uri: cover }} style={styles.image} />
 
       <View style={styles.info}>
-        <View style={styles.headerRow}>
-          <Text style={styles.title}>{title}</Text>
-          <StatusCode color={isLate ? "red" : "green"} />
-        </View>
+        <Text style={styles.title}>{title}</Text>
         <Text style={styles.author}>{author}</Text>
         <Text style={[styles.dueDate, isLate && styles.dueLate]}>
           {isLate ? "Devolução atrasada" : "Devolução até " + dueDate}
         </Text>
       </View>
-      <CustomButton
-        title="RENOVAR"
-        variant="outline"
-        color="#007bff"
-        onPress={onRenew}
-      />
+
+      <View style={styles.rightSection}>
+        <StatusCode color={STATUS_COLORS[status]} />
+        <CustomButton
+          title="RENOVAR"
+          variant="outline"
+          color="#007bff"
+          onPress={onRenew}
+        />
+      </View>
     </View>
   );
 };
@@ -56,7 +66,7 @@ const styles = StyleSheet.create({
     padding: 10,
     marginVertical: 8,
     marginHorizontal: 10,
-    alignItems: "center",
+    alignItems: "flex-start", // deixa o topo alinhado
   },
   image: {
     width: 60,
@@ -66,11 +76,12 @@ const styles = StyleSheet.create({
   },
   info: {
     flex: 1,
+    justifyContent: "center",
   },
-  headerRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 2,
+  rightSection: {
+    justifyContent: "space-between",
+    alignItems: "flex-end",
+    height: 90, // mesmo da imagem pra alinhar verticalmente
   },
   title: {
     fontWeight: "bold",
