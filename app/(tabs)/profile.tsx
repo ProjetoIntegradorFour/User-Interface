@@ -1,10 +1,13 @@
-import { Ionicons } from "@expo/vector-icons";
 import CustomButton from "@/components/CustomButton";
-import React from "react";
+import { useAuth } from "@/contexts/AuthContext";
+import { Ionicons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function Profile() {
-  // Simulação de usuário (até ter integração com backend)
+  const router = useRouter();
+  const { logout } = useAuth();
+
   const user = {
     name: "Thomas Venturelli da Silva",
     email: "tominhasoioi@gmail.com",
@@ -14,12 +17,16 @@ export default function Profile() {
     avatar: require("@/assets/images/gatoserio.jpg"),
   };
 
+  const handleLogout = async () => {
+    await logout();
+    router.replace("/login"); // redireciona pra página de login
+  };
+
   return (
     <View style={styles.container}>
       {/* Card do usuário */}
       <View style={styles.card}>
         <View style={styles.row}>
-          {/* Avatar */}
           <Image source={user.avatar} style={styles.avatar} />
 
           <View style={styles.info}>
@@ -56,7 +63,10 @@ export default function Profile() {
           <Text style={styles.optionText}>Configurações da Conta</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.option, styles.logout]}>
+        <TouchableOpacity
+          style={[styles.option, styles.logout]}
+          onPress={handleLogout}
+        >
           <Ionicons name="exit-outline" size={22} color="#e53935" />
           <Text style={[styles.optionText, { color: "#e53935" }]}>
             Sair da Conta
@@ -111,18 +121,6 @@ const styles = StyleSheet.create({
   phone: {
     fontSize: 15,
     marginTop: 2,
-  },
-  btn: {
-    marginTop: 12,
-    alignSelf: "flex-start",
-    backgroundColor: "#9C27B0",
-    paddingHorizontal: 14,
-    paddingVertical: 6,
-    borderRadius: 8,
-  },
-  btnText: {
-    color: "#fff",
-    fontWeight: "bold",
   },
   statusContainer: {
     marginTop: 10,
