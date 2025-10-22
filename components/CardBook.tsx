@@ -6,7 +6,7 @@ import StatusCode from "./StatusCode";
 interface BookCardProps {
   title: string;
   author: string;
-  cover: string;
+  isbn: string;
   dueDate: string;
   status: "current" | "near" | "late" | "queue" | "pickup" | "available";
   onRenew: () => void;
@@ -24,7 +24,7 @@ const STATUS_COLORS: Record<BookCardProps["status"], string> = {
 const CardBook: React.FC<BookCardProps> = ({
   title,
   author,
-  cover,
+  isbn,
   dueDate,
   status,
   onRenew,
@@ -33,7 +33,10 @@ const CardBook: React.FC<BookCardProps> = ({
 
   return (
     <View style={styles.card}>
-      <Image source={{ uri: cover }} style={styles.image} />
+      <Image
+        source={{ uri: `https://covers.openlibrary.org/b/isbn/${isbn}-L.jpg` }}
+        style={styles.image}
+      />
 
       <View style={styles.info}>
         <Text style={styles.title}>{title}</Text>
