@@ -1,10 +1,13 @@
-import { Ionicons } from "@expo/vector-icons";
 import CustomButton from "@/components/CustomButton";
-import React from "react";
+import { useAuth } from "@/contexts/AuthContext";
+import { Ionicons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function Profile() {
-  // Simulação de usuário (até ter integração com backend)
+  const router = useRouter();
+  const { logout } = useAuth();
+
   const user = {
     name: "Thomas Venturelli da Silva",
     email: "tominhasoioi@gmail.com",
@@ -14,14 +17,29 @@ export default function Profile() {
     avatar: require("@/assets/images/gatoserio.jpg"),
   };
 
+  const handleLogout = async () => {
+    await logout();
+    router.replace("/login");
+  };
+
   return (
     <View style={styles.container}>
       {/* Card do usuário */}
       <View style={styles.card}>
         <View style={styles.row}>
-          {/* Avatar */}
-          <Image source={user.avatar} style={styles.avatar} />
+          {/* Foto + botão alinhados */}
+          <View style={styles.avatarContainer}>
+            <Image source={user.avatar} style={styles.avatar} />
+            <CustomButton
+              title="Alterar Foto"
+              variant="filled"
+              color="#8000ff"
+              onPress={() => console.log("Alterar Foto")}
+              style={styles.smallButton}
+            />
+          </View>
 
+          {/* Informações do usuário */}
           <View style={styles.info}>
             <Text style={styles.name}>{user.name}</Text>
             <Text style={styles.email}>{user.email}</Text>
@@ -36,12 +54,6 @@ export default function Profile() {
             </View>
           </View>
         </View>
-        <CustomButton
-          title="Alterar Foto"
-          variant="filled"
-          color="#8000ff"
-          onPress={() => console.log("Alterar Foto")}
-        />
       </View>
 
       {/* Opções abaixo */}
@@ -56,7 +68,10 @@ export default function Profile() {
           <Text style={styles.optionText}>Configurações da Conta</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.option, styles.logout]}>
+        <TouchableOpacity
+          style={[styles.option, styles.logout]}
+          onPress={handleLogout}
+        >
           <Ionicons name="exit-outline" size={22} color="#e53935" />
           <Text style={[styles.optionText, { color: "#e53935" }]}>
             Sair da Conta
@@ -90,11 +105,15 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
+  avatarContainer: {
+    alignItems: "center",
+    marginRight: 20,
+  },
   avatar: {
     width: 85,
     height: 85,
     borderRadius: 45,
-    marginRight: 20,
+    marginBottom: 6,
   },
   info: {
     flex: 1,
@@ -112,18 +131,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
     marginTop: 2,
   },
-  btn: {
-    marginTop: 12,
-    alignSelf: "flex-start",
-    backgroundColor: "#9C27B0",
-    paddingHorizontal: 14,
-    paddingVertical: 6,
-    borderRadius: 8,
-  },
-  btnText: {
-    color: "#fff",
-    fontWeight: "bold",
-  },
   statusContainer: {
     marginTop: 10,
   },
@@ -140,7 +147,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   options: {
-    marginTop: "30%",
+    marginTop: "43%",
     width: "90%",
   },
   option: {
@@ -158,5 +165,12 @@ const styles = StyleSheet.create({
   logout: {
     marginTop: 5,
     borderBottomWidth: 0,
+  },
+  smallButton: {
+    paddingVertical: 4,
+    paddingHorizontal: 10,
+    minWidth: 0,
+    marginTop: 8,
+    alignSelf: "center",
   },
 });
