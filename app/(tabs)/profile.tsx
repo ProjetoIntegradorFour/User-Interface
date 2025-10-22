@@ -19,7 +19,7 @@ export default function Profile() {
 
   const handleLogout = async () => {
     await logout();
-    router.replace("/login"); // redireciona pra página de login
+    router.replace("/login");
   };
 
   return (
@@ -27,8 +27,19 @@ export default function Profile() {
       {/* Card do usuário */}
       <View style={styles.card}>
         <View style={styles.row}>
-          <Image source={user.avatar} style={styles.avatar} />
+          {/* Foto + botão alinhados */}
+          <View style={styles.avatarContainer}>
+            <Image source={user.avatar} style={styles.avatar} />
+            <CustomButton
+              title="Alterar Foto"
+              variant="filled"
+              color="#8000ff"
+              onPress={() => console.log("Alterar Foto")}
+              style={styles.smallButton}
+            />
+          </View>
 
+          {/* Informações do usuário */}
           <View style={styles.info}>
             <Text style={styles.name}>{user.name}</Text>
             <Text style={styles.email}>{user.email}</Text>
@@ -43,12 +54,6 @@ export default function Profile() {
             </View>
           </View>
         </View>
-        <CustomButton
-          title="Alterar Foto"
-          variant="filled"
-          color="#8000ff"
-          onPress={() => console.log("Alterar Foto")}
-        />
       </View>
 
       {/* Opções abaixo */}
@@ -100,11 +105,15 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
+  avatarContainer: {
+    alignItems: "center",
+    marginRight: 20,
+  },
   avatar: {
     width: 85,
     height: 85,
     borderRadius: 45,
-    marginRight: 20,
+    marginBottom: 6,
   },
   info: {
     flex: 1,
@@ -138,7 +147,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   options: {
-    marginTop: "30%",
+    marginTop: "43%",
     width: "90%",
   },
   option: {
@@ -156,5 +165,12 @@ const styles = StyleSheet.create({
   logout: {
     marginTop: 5,
     borderBottomWidth: 0,
+  },
+  smallButton: {
+    paddingVertical: 4,
+    paddingHorizontal: 10,
+    minWidth: 0,
+    marginTop: 8,
+    alignSelf: "center",
   },
 });
