@@ -6,7 +6,7 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import { login as loginService } from "../services/auth";
+import { login as loginService } from "@/services/auth";
 
 type User = { token: string } | null;
 

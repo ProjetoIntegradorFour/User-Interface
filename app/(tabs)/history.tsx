@@ -1,27 +1,38 @@
 import CardBook from "@/components/CardBook";
-import React from "react";
+import api from "@/services/api";
+import { useEffect, useState } from "react";
 import { ScrollView } from "react-native";
 
-export default function App() {
+export default function History() {
+  const [books, setBooks] = useState<any[]>([]);
+
+  //puxar os livros do db, mas ainda não tem um db
+  useEffect(() => {
+    async function fetchBooks() {
+      try {
+        const response = await api.get("/books");
+        setBooks(response.data);
+      } catch (error) {
+        console.error("Erro ao buscar livros:", error);
+      }
+    }
+
+    fetchBooks();
+  }, []);
+
   return (
     <ScrollView style={{ flex: 1, backgroundColor: "#f9f9f9", paddingTop: 50 }}>
-      <CardBook
-        title="O Ladrão de Raios"
-        author="Rick Riordan"
-        cover="https://covers.openlibrary.org/b/id/10521209-L.jpg"
-        dueDate="22/08/2025"
-        status="ok"
-        onRenew={() => console.log("Renovar Ladrão de Raios")}
-      />
-
-      <CardBook
-        title="Uma Odisseia no Espaço"
-        author="Arthur Clarke"
-        cover="https://covers.openlibrary.org/b/id/11153268-L.jpg"
-        dueDate="09/07/2025"
-        status="late"
-        onRenew={() => console.log("Renovar Odisseia")}
-      />
+      {books.map((book) => (
+        <CardBook
+          key={book.id}
+          title={book.title}
+          author={book.author}
+          isbn={`https://covers.openlibrary.org/b/isbn/${book.isbn}-L.jpg`}
+          dueDate={book.due_date}
+          status={book.status}
+          onRenew={() => console.log(`Renovar ${book.title}`)}
+        />
+      ))}
     </ScrollView>
   );
 }
