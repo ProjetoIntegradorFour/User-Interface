@@ -1,33 +1,24 @@
-import React, { useEffect, useState } from "react";
-import { ScrollView } from "react-native";
 import CardBook from "@/components/CardBook";
 import api from "@/services/api";
+import { useEffect, useState } from "react";
+import { ScrollView } from "react-native";
 
 export default function History() {
   const [books, setBooks] = useState<any[]>([]);
 
+  //puxar os livros do db, mas ainda não tem um db
   useEffect(() => {
-  const mockBooks = [
-    {
-      id: 1,
-      title: "Percy Jackson e o Ladrão de Raios",
-      author: "Rick Riordan",
-      isbn: "9788598078355",
-      due_date: "2025-08-22",
-      status: "ok",
-    },
-    {
-      id: 2,
-      title: "1984",
-      author: "George Orwell",
-      isbn: "9788535909555",
-      due_date: "2025-07-10",
-      status: "late",
-    },
-  ];
-  setBooks(mockBooks);
-}, []);
+    async function fetchBooks() {
+      try {
+        const response = await api.get("/books");
+        setBooks(response.data);
+      } catch (error) {
+        console.error("Erro ao buscar livros:", error);
+      }
+    }
 
+    fetchBooks();
+  }, []);
 
   return (
     <ScrollView style={{ flex: 1, backgroundColor: "#f9f9f9", paddingTop: 50 }}>
