@@ -1,5 +1,5 @@
 import { router, Tabs } from "expo-router";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Image, Pressable } from "react-native";
 
 import { HapticTab } from "@/components/HapticTab";
