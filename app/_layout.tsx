@@ -30,7 +30,6 @@ export default function RootLayout() {
           {/* Tela inicial (login) */}
           <Stack.Screen name="index" options={{ headerShown: false }} />
 
-          {/* Tabs só aparecem depois do login */}
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
 
           <Stack.Screen name="+not-found" />
