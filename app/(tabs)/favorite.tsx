@@ -1,8 +1,7 @@
-import { useRouter } from "expo-router";
 import CustomButton from "@/components/CustomButton";
 import Textfield from "@/components/textfield";
 import { ThemedText } from "@/components/ThemedText";
-import React from "react";
+import { useRouter } from "expo-router";
 import { View } from "react-native";
 
 export default function TabFiveScreen() {
@@ -18,7 +17,7 @@ export default function TabFiveScreen() {
         title="Ir para Login"
         variant="outline"
         color="#007bff"
-        onPress={() => router.push("/login")}
+        onPress={() => router.push("./index")}
       />
     </View>
   );

@@ -8,7 +8,7 @@ import "react-native-reanimated";
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
-    "SpaceMono": require("@/assets/fonts/SpaceMono-Regular.ttf"),
+    SpaceMono: require("@/assets/fonts/SpaceMono-Regular.ttf"),
     "Roboto-Medium": require("@/assets/fonts/Roboto-Medium.ttf"),
     "Roboto-Bold": require("@/assets/fonts/Roboto-Bold.ttf"),
     "RacingSansOne-Regular": require("@/assets/fonts/RacingSansOne-Regular.ttf"),
@@ -26,11 +26,10 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={DefaultTheme}>
       <AuthProvider>
-        <Stack initialRouteName="login">
+        <Stack initialRouteName="index">
           {/* Tela inicial (login) */}
-          <Stack.Screen name="login" options={{ headerShown: false }} />
+          <Stack.Screen name="index" options={{ headerShown: false }} />
 
-          {/* Tabs só aparecem depois do login */}
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
 
           <Stack.Screen name="+not-found" />
