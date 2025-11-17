@@ -26,8 +26,9 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={DefaultTheme}>
       <AuthProvider>
-        <Stack initialRouteName="login">
-          <Stack.Screen name="login" options={{ headerShown: false }} />
+        <Stack initialRouteName="index">
+          {/* Tela inicial (login) */}
+          <Stack.Screen name="index" options={{ headerShown: false }} />
 
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
 

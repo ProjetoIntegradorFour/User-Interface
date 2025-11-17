@@ -17,7 +17,7 @@ export default function TabLayout() {
 
   useEffect(() => {
     if (!user) {
-      router.replace("/login");
+      router.replace("./index");
     }
   }, [user]);
 
@@ -82,7 +82,7 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name="index"
+        name="home"
         options={{
           title: "",
           tabBarIcon: ({ color }) => (
