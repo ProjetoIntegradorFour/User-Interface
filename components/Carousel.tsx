@@ -12,7 +12,8 @@ import {
 
 const { width } = Dimensions.get("window");
 
-interface Book {
+// 👉 export do Book (pra você poder importar no index)
+export interface Book {
   id: string;
   title: string;
   image: string;
@@ -36,28 +37,29 @@ const Carousel: React.FC<CarouselProps> = ({ title, data, renderButton }) => {
   };
 
   return (
-    <View style={{ marginVertical: 20, marginLeft: 6, marginRight: 6 }}>
-      {/* título */}
+    <View style={{ marginVertical: 5 }}>
       <Text style={styles.title}>{title}</Text>
 
       <View style={{ flexDirection: "row", alignItems: "center" }}>
-        {/* seta esquerda */}
         <TouchableOpacity onPress={() => scrollToIndex(currentIndex - 1)}>
           <Ionicons name="chevron-back-circle" size={36} color="#9C27B0" />
         </TouchableOpacity>
 
-        {/* lista */}
         <FlatList
           ref={flatListRef}
           data={data}
-          keyExtractor={(item) => item.id}
           horizontal
+          keyExtractor={(item) => item.id}
           showsHorizontalScrollIndicator={false}
           renderItem={({ item }) => (
             <View style={styles.card}>
               <Image source={{ uri: item.image }} style={styles.image} />
-              {renderButton(item)}
+
+              <View style={{ marginTop: 8 }}>
+                {renderButton(item)}
+              </View>
             </View>
+
           )}
           onMomentumScrollEnd={(event) => {
             const index = Math.round(
@@ -67,7 +69,6 @@ const Carousel: React.FC<CarouselProps> = ({ title, data, renderButton }) => {
           }}
         />
 
-        {/* seta direita */}
         <TouchableOpacity onPress={() => scrollToIndex(currentIndex + 1)}>
           <Ionicons name="chevron-forward-circle" size={36} color="#9C27B0" />
         </TouchableOpacity>
@@ -85,7 +86,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   card: {
-    width: width * 0.45,
+    width: width * 0.40,
     backgroundColor: "#fff",
     borderRadius: 10,
     marginHorizontal: 10,
@@ -96,16 +97,14 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 5,
     elevation: 3,
-    height: 280,
-    marginBottom: 5,
-    marginTop: 5,
   },
+
   image: {
     width: "100%",
-    height: 200,
+    aspectRatio: 0.80, // mantém proporção de livro
     borderRadius: 6,
-    marginBottom: 10,
-    resizeMode: "cover",
+    resizeMode: "contain",
+    marginBottom: 6, // aproxima do botão
   },
 });
 
