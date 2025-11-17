@@ -1,32 +1,12 @@
-<<<<<<< Updated upstream
-=======
-import React, { useEffect, useState } from "react";
-import { ScrollView, View, Text, TouchableOpacity } from "react-native";
->>>>>>> Stashed changes
 import CardBook from "@/components/CardBook";
-import api from "@/services/api";
 import { useEffect, useState } from "react";
-import { ScrollView } from "react-native";
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 
 export default function History() {
   const [books, setBooks] = useState<any[]>([]);
   const [tab, setTab] = useState<"ativo" | "recentes" | "reservas">("ativo");
 
-  //puxar os livros do db, mas ainda não tem um db
   useEffect(() => {
-<<<<<<< Updated upstream
-    async function fetchBooks() {
-      try {
-        const response = await api.get("/books");
-        setBooks(response.data);
-      } catch (error) {
-        console.error("Erro ao buscar livros:", error);
-      }
-    }
-
-    fetchBooks();
-  }, []);
-=======
     const mockBooks = [
       {
         id: 1,
@@ -48,17 +28,18 @@ export default function History() {
     setBooks(mockBooks);
   }, []);
 
+  // filtros de  aba
   const filteredBooks =
     tab === "ativo"
       ? books
       : tab === "recentes"
-      ? books.slice(0, 1) 
-      : []; // reservas
->>>>>>> Stashed changes
+      ? books.slice(0, 1) // exemplo
+      : []; // reservas (por enquanto vazio)
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: "#f9f9f9", paddingTop: 30 }}>
+    <ScrollView style={{ flex: 1, backgroundColor: "#f9f9f9", paddingTop: 50 }}>
 
+      {/* ======================= ABAS ======================= */}
       <View style={{ flexDirection: "row", justifyContent: "center", gap: 10, marginBottom: 25 }}>
 
         <TouchableOpacity
@@ -104,6 +85,7 @@ export default function History() {
         </TouchableOpacity>
 
       </View>
+      {/* ==================================================== */}
 
       {filteredBooks.map((book) => (
         <CardBook
