@@ -28,17 +28,17 @@ const ITEM_FULL_WIDTH = ITEM_WIDTH + ITEM_MARGIN_HORIZONTAL * 2;
 export default function AuthorCarousel({
   title = "Autores",
   authors,
-  scrollSpeed = 0.4,
+  scrollSpeed = 0.2,
   onAuthorPress,
 }: Props) {
   const listRef = useRef<FlatList<any>>(null);
 
-  const loopData = [...authors, ...authors, ...authors]; // triplica
+  const loopData = [...authors, ...authors, ...authors];
 
   useEffect(() => {
     if (!authors.length) return;
 
-    let offset = authors.length * ITEM_FULL_WIDTH; // start no meio
+    let offset = authors.length * ITEM_FULL_WIDTH;
 
     // ✅ delay necessário no web e mobile
     const startTimer = setTimeout(() => {
@@ -95,20 +95,20 @@ export default function AuthorCarousel({
           </TouchableOpacity>
         )}
         scrollEnabled={true}
-        contentContainerStyle={{ paddingHorizontal: 10 }}
+        contentContainerStyle={{ paddingHorizontal: 20 }}
       />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { marginTop: 20 },
+  container: { marginTop: 20, paddingHorizontal: 20 },
   title: {
-    fontSize: 20,
-    fontWeight: "700",
-    color: "#8000ff",
-    marginLeft: 15,
-    marginBottom: 8,
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#9C27B0",
+    marginLeft: -9,
+    marginBottom: 10,
   },
   item: {
     width: ITEM_WIDTH,
