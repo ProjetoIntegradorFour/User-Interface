@@ -1,6 +1,6 @@
 import { useRouter } from "expo-router";
 import { useEffect } from "react";
-import { useAuth } from "../../contexts/AuthContext"; // seu context
+import { useAuth } from "../contexts/AuthContext"; // seu context
 
 export default function ProtectedRoute({ children }) {
   const { user } = useAuth();
