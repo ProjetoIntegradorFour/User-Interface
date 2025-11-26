@@ -1,7 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
-import React from "react";
 import { StyleSheet, TextInput, View } from "react-native";
-import ProtectedRoute from "./ProtectedRoute";
+import ProtectedRoute from "@/components/ProtectedRoute";
 export default function Explore() {
   return (
     <ProtectedRoute>
