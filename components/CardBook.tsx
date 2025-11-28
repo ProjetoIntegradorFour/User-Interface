@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import CustomButton from "./CustomButton";
 import StatusCode from "./StatusCode";
 
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     borderColor: "#a020f0",
     borderRadius: 10,
     padding: 10,
-    marginVertical: 8,
+    marginVertical: 10,
     marginHorizontal: 10,
     alignItems: "flex-start", // deixa o topo alinhado
   },
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
   rightSection: {
     justifyContent: "space-between",
     alignItems: "flex-end",
-    height: 90, // mesmo da imagem pra alinhar verticalmente
+    minHeight: 90, // mesmo da imagem pra alinhar verticalmente
   },
   title: {
     fontWeight: "bold",

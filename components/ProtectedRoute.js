@@ -8,7 +8,7 @@ export default function ProtectedRoute({ children }) {
 
   useEffect(() => {
     if (!user) {
-      router.replace("/login"); // redireciona se não estiver logado
+      router.replace("/login");
     }
   }, [user]);
 
