@@ -55,11 +55,8 @@ const Carousel: React.FC<CarouselProps> = ({ title, data, renderButton }) => {
             <View style={styles.card}>
               <Image source={{ uri: item.image }} style={styles.image} />
 
-              <View style={{ marginTop: 8 }}>
-                {renderButton(item)}
-              </View>
+              <View style={{ marginTop: 8 }}>{renderButton(item)}</View>
             </View>
-
           )}
           onMomentumScrollEnd={(event) => {
             const index = Math.round(
@@ -83,10 +80,10 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#9C27B0",
     marginLeft: 10,
-    marginBottom: 10,
+    marginBottom: 20,
   },
   card: {
-    width: width * 0.40,
+    width: width * 0.4,
     backgroundColor: "#fff",
     borderRadius: 10,
     marginHorizontal: 10,
@@ -101,7 +98,7 @@ const styles = StyleSheet.create({
 
   image: {
     width: "100%",
-    aspectRatio: 0.80, // mantém proporção de livro
+    aspectRatio: 0.8, // mantém proporção de livro
     borderRadius: 6,
     resizeMode: "contain",
     marginBottom: 6, // aproxima do botão
