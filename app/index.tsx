@@ -28,8 +28,8 @@ export default function Login() {
 
   const handleLogin = async () => {
     try {
-      await signIn(cpf, password); // chama o contexto que já usa o service
-      router.replace("/(tabs)/explore"); // redireciona
+      await signIn(cpf, password);
+      router.replace("/(tabs)/explore");
     } catch (err: any) {
       console.error(err.response?.data || err.message);
       setError("CPF ou senha inválidos");
@@ -69,6 +69,15 @@ export default function Login() {
             color="#9C27B0"
             onPress={handleLogin}
           />
+
+          {/* -------------- NOVO BOTÃO PARA USER -------------- */}
+          <CustomButton
+            title="Ir para User"
+            variant="filled"
+            color="#4CAF50"
+            onPress={() => router.push("/(tabs)/user")}
+          />
+          {/* -------------------------------------------------- */}
         </View>
       </View>
     </View>
@@ -104,12 +113,8 @@ const styles = StyleSheet.create({
   },
   marge: {
     marginTop: 30,
-  },
-  campo: {
-    fontFamily: "RacingSansOne-Regular",
-    fontSize: 20,
-    color: "#FFF",
-    marginTop: 15,
+    width: "100%",
+    gap: 15,
   },
   logoImg: {
     width: 70,
