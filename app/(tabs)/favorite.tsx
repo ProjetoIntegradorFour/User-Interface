@@ -1,61 +1,53 @@
-// app/(tabs)/favorite.tsx
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { router } from "expo-router";
+import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
+import { useFavoritesStore } from "../../store/useFavoritesStore";
 
 export default function FavoriteScreen() {
-  // exemplo de array (depois você troca pelo seu contexto/async storage/api)
-  const favorites = []; // coloque livros aqui
+  const { favorites } = useFavoritesStore();
+
+  if (favorites.length === 0) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Text style={{ fontSize: 18, color: "#555" }}>
+          Você ainda não tem livros favoritos 💜
+        </Text>
+      </View>
+    );
+  }
 
   return (
-    <View style={styles.container}>
-      {favorites.length === 0 ? (
-        <View style={styles.emptyContainer}>
-          <Text style={styles.emptyText}>
-            Você ainda não tem livros favoritos
-          </Text>
-        </View>
-      ) : (
-        <FlatList
-          data={favorites}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => (
-            <View style={styles.card}>
-              <Text style={styles.title}>{item.title}</Text>
-              <Text style={styles.author}>{item.author}</Text>
-            </View>
-          )}
-        />
+    <FlatList
+      data={favorites}
+      keyExtractor={(item) => item.id}
+      contentContainerStyle={{ padding: 16 }}
+      renderItem={({ item }) => (
+        <TouchableOpacity
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            backgroundColor: "#fff",
+            padding: 12,
+            marginBottom: 12,
+            borderRadius: 10,
+            elevation: 3,
+          }}
+          onPress={() => router.push(`/book/${item.id}`)}
+        >
+          <Image
+            source={{ uri: item.image }}
+            style={{ width: 60, height: 90, borderRadius: 6, marginRight: 12 }}
+          />
+
+          <View style={{ flex: 1 }}>
+            <Text style={{ fontWeight: "bold", fontSize: 16 }}>
+              {item.title}
+            </Text>
+            {item.author && (
+              <Text style={{ color: "#777", marginTop: 2 }}>{item.author}</Text>
+            )}
+          </View>
+        </TouchableOpacity>
       )}
-    </View>
+    />
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
-  },
-  emptyContainer: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  emptyText: {
-    fontSize: 16,
-    color: "#777",
-  },
-  card: {
-    padding: 16,
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: "#ddd",
-    marginBottom: 12,
-  },
-  title: {
-    fontSize: 16,
-    fontWeight: "600",
-  },
-  author: {
-    fontSize: 14,
-    color: "#555",
-  },
-});

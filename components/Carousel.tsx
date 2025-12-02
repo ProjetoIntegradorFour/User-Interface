@@ -1,4 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
+import { router } from "expo-router";
 import React, { useRef, useState } from "react";
 import {
   Dimensions,
@@ -52,11 +53,15 @@ const Carousel: React.FC<CarouselProps> = ({ title, data, renderButton }) => {
           keyExtractor={(item) => item.id}
           showsHorizontalScrollIndicator={false}
           renderItem={({ item }) => (
-            <View style={styles.card}>
+            <TouchableOpacity
+              style={styles.card}
+              onPress={() => router.push(`/book/${item.id}`)}
+              activeOpacity={0.8}
+            >
               <Image source={{ uri: item.image }} style={styles.image} />
 
               <View style={{ marginTop: 8 }}>{renderButton(item)}</View>
-            </View>
+            </TouchableOpacity>
           )}
           onMomentumScrollEnd={(event) => {
             const index = Math.round(
