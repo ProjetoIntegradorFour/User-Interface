@@ -1,7 +1,5 @@
-import { ThemedText } from "@/components/ThemedText";
+import NotificationScreen from "@/components/NotificationScreen";
 
 export default function TabSixScreen() {
-    return (
-        <ThemedText>notification</ThemedText>
-    )
+  return <NotificationScreen />;
 }
